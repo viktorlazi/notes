@@ -1,0 +1,19 @@
+body{
+    color: black;
+}
+
+.tree{
+    display:block;
+    padding:5px;
+}
+.tree p{
+    display:block;
+    margin:10px 0;
+}
+.tree .djeca{
+    margin-left:20px;
+    border-left: 1px solid black;
+}
+.tree .djeca p{
+    padding-left: 7px;
+}

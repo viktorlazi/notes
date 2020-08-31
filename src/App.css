@@ -1,3 +1,6 @@
 .App{
     display:block;
 }
+body{
+    margin:0;
+}
