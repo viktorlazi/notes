@@ -7,11 +7,12 @@ body{
     padding:5px;
 }
 .tree p{
+
     display:block;
-    margin:10px 0;
+    margin:8px;
 }
 .tree .djeca{
-    margin-left:20px;
+    margin-left:25px;
     border-left: 1px solid black;
 }
 .tree .djeca p{

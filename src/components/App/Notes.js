@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Tema from './Tema/Tema'
 import './notes.css'
+import { Editor } from '@tinymce/tinymce-react';
 
 export default class Notes extends Component {
     state ={
@@ -51,14 +52,33 @@ export default class Notes extends Component {
             }
         ]
     }
+    handleEditorChange(e){
+        console.log(e.target.getContent());
+    }
+
     render() {
         return(
-            <div className="tree">
-                {
-                    this.state.struktura.map(
-                        (state) => <Tema state={state}/>
-                    )
-                }
+            <div className="App">
+                <div className="tree">
+                    {
+                        this.state.struktura.map(
+                            (state) => <Tema state={state}/>
+                        )
+                    }
+                </div>
+                <Editor
+         initialValue=""
+         init={{
+           height: 500,
+           menubar: false,
+           plugins: [
+             'advlist autolink lists link image charmap print preview anchor',
+             'searchreplace visualblocks code fullscreen',
+             'insertdatetime media table paste code help wordcount'
+           ]
+         }}
+         onEditorChange={this.handleEditorChange}
+       />
             </div>
         )
     }
