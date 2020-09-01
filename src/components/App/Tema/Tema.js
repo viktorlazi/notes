@@ -10,9 +10,10 @@ export default class Tema extends Component {
         return (djeca ? {display:'block'}:{display:'none'})
     }
     aktivni = (aktivni) =>{
+        
         return ((aktivni===this.props.state.id) ? {color:'#3a4bad'}:{color:'black'})
     }
-   
+    
     
     render() {
         return (

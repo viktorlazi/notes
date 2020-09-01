@@ -52,7 +52,7 @@ class Notes extends Component {
             }
         ],
         aktivni: 0,
-        sadrzaj:[1]
+        sadrzaj:["topic-biology"]
     }
 
 
@@ -70,6 +70,9 @@ class Notes extends Component {
     aktivni = (aktivni) =>{
         return (aktivni ? {color:'#3a4bad'}:{display:'black'})
     }
+    editorValue = (sadrzaj) =>{
+        return (sadrzaj===undefined?'topic - ':sadrzaj)
+    }
 
     render() {
         return(
@@ -85,7 +88,8 @@ class Notes extends Component {
                     }
                 </div>
                 <Editor
-                    initialValue={''}
+                    value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}
+                    
                     init={{
                     height: 500,
                     menubar: false,
