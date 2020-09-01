@@ -3,23 +3,27 @@ import Tema from './Tema/Tema'
 import './notes.css'
 import { Editor } from '@tinymce/tinymce-react';
 
-export default class Notes extends Component {
-    state ={
+class Notes extends Component {
+
+    constructor(props){
+        super(props);
+        this.handleEditorChange = this.handleEditorChange.bind(this);
+
+    }
+
+    state = {
         struktura:[
             {
                 id: 0,
                 naslov: "biology",
-                sadrzaj:'topic - biology',
                 djeca:[
                     {
                         id:1,
                         naslov:'behaviour',
-                        sadrzaj:'topic - behaviour',
                         djeca:[
                             {
                                 id:2,
                                 naslov:'amigdala',
-                                sadrzaj:'topic - amigdala',
                                 djeca:[]
                             }
                         ]
@@ -27,33 +31,44 @@ export default class Notes extends Component {
                     {
                         id:3,
                         naslov:'bacteria',
-                        sadrzaj:'topic - bacteria',
                         djeca:[]
                     }
                 ]
             },
             {
-                id: 1,
+                id: 4,
                 naslov: "filosophy",
-                sadrzaj:'topic - filosophy',
                 djeca:[]
             },
             {
-                id: 2,
+                id: 5,
                 naslov: "technology",
-                sadrzaj:'topic - technology',
                 djeca:[]
             },
             {
-                id: 3,
+                id: 6,
                 naslov: "society",
-                sadrzaj:'topic - society',
                 djeca:[]
             }
-        ]
+        ],
+        aktivni: 0,
+        sadrzaj:[1]
     }
-    handleEditorChange(e){
-        console.log(e.target.getContent());
+
+
+    handleEditorChange(content, editor){
+        let a = [...this.state.sadrzaj];
+        a[this.state.aktivni] = content;
+        this.setState({sadrzaj:a});
+    }
+    path=(id)=>{
+
+    }
+    changeAktivni = (a) =>{
+        this.setState({aktivni:a})
+    }
+    aktivni = (aktivni) =>{
+        return (aktivni ? {color:'#3a4bad'}:{display:'black'})
     }
 
     render() {
@@ -62,24 +77,29 @@ export default class Notes extends Component {
                 <div className="tree">
                     {
                         this.state.struktura.map(
-                            (state) => <Tema state={state}/>
+                            (state) => <Tema 
+                            changeAktivni={(a)=>this.changeAktivni(a)}
+                            aktivni={this.state.aktivni} 
+                            state={state}/>
                         )
                     }
                 </div>
                 <Editor
-         initialValue=""
-         init={{
-           height: 500,
-           menubar: false,
-           plugins: [
-             'advlist autolink lists link image charmap print preview anchor',
-             'searchreplace visualblocks code fullscreen',
-             'insertdatetime media table paste code help wordcount'
-           ]
-         }}
-         onEditorChange={this.handleEditorChange}
-       />
+                    initialValue={''}
+                    init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                    ]
+                    }}
+                    onEditorChange={this.handleEditorChange}
+                />
             </div>
         )
     }
 }
+
+export default Notes;
