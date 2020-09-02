@@ -77,8 +77,25 @@ class Notes extends Component {
     shema = (naslov) =>{
         return {id: this.state.sadrzaj.length, naslov:naslov, djeca:[]}
     }
+    dobijDijetePrekoId = (id) =>{
+        return(
+            this.state.struktura.filter(
+                dijete =>{
+                    return dijete.id === id
+                }
+        ))
+    }
+    path = (p) =>{
+        
+    }
+
     addNew = (path) =>{
+
+        path = path===undefined?[]:path;
         console.log(path);
+        this.dobijDijetePrekoId(path[0]).filter(
+
+        )
     }
 
     render() {
