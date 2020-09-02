@@ -52,7 +52,10 @@ class Notes extends Component {
             }
         ],
         aktivni: 0,
-        sadrzaj:["topic-biology"]
+        sadrzaj:["topic-biology", "topic - behaviour",
+                "topic - amigdala", "topic - bacteria",
+                "topic - filosophy", "topic - technology",
+                "topic - society"]
     }
 
 
@@ -61,9 +64,7 @@ class Notes extends Component {
         a[this.state.aktivni] = content;
         this.setState({sadrzaj:a});
     }
-    path=(id)=>{
-
-    }
+    
     changeAktivni = (a) =>{
         this.setState({aktivni:a})
     }
@@ -72,6 +73,12 @@ class Notes extends Component {
     }
     editorValue = (sadrzaj) =>{
         return (sadrzaj===undefined?'topic - ':sadrzaj)
+    }
+    shema = (naslov) =>{
+        return {id: this.state.sadrzaj.length, naslov:naslov, djeca:[]}
+    }
+    addNew = (path) =>{
+        console.log(path);
     }
 
     render() {
@@ -83,9 +90,11 @@ class Notes extends Component {
                             (state) => <Tema 
                             changeAktivni={(a)=>this.changeAktivni(a)}
                             aktivni={this.state.aktivni} 
-                            state={state}/>
+                            state={state}
+                            addNew={(path)=>this.addNew(path)}/>
                         )
                     }
+                    <p onClick={()=>this.addNew()} style={{color:'#db7b48'}}>+add new</p>
                 </div>
                 <Editor
                     value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}

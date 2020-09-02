@@ -13,7 +13,11 @@ export default class Tema extends Component {
         
         return ((aktivni===this.props.state.id) ? {color:'#3a4bad'}:{color:'black'})
     }
-    
+    addNew = (path) =>{
+        path = path===undefined?[]:path;
+        path.unshift(this.props.state.id);
+        this.props.addNew(path); // prenese array id-ova
+    }
     
     render() {
         return (
@@ -28,11 +32,14 @@ export default class Tema extends Component {
                     {this.props.state.djeca.map(
                         (state) => {
                             return <Tema 
+                            addNew={(path)=>this.addNew(path)}
                             changeAktivni={(a)=>this.props.changeAktivni(a)}
                             aktivni={this.props.aktivni}   
                             state={state} />
                         }
                     )}
+                    <p onClick={()=>this.addNew()} style={{color:'#db7b48'}}>+add new</p>
+
                 </div>
             </div>
         )
