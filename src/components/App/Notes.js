@@ -3,6 +3,7 @@ import Tema from './Tema/Tema'
 import './notes.css'
 import { Editor } from '@tinymce/tinymce-react';
 import Glava from '../Glava';
+import Noge from '../Noge';
 
 class Notes extends Component {
 
@@ -118,7 +119,7 @@ class Notes extends Component {
                     </div>
                     <Editor
                         value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}
-                        
+                        id="editor"
                         init={{
                         height: 500,
                         menubar: false,
@@ -131,6 +132,7 @@ class Notes extends Component {
                         onEditorChange={this.handleEditorChange}
                     />
                 </div>
+                <Noge/>
             </div>
         )
     }

@@ -1,0 +1,14 @@
+footer{
+    display:block;
+    margin-top:50px;
+}
+footer ul li{
+    display:block;
+    text-align:center;
+}
+
+@media only screen and (min-width: 900px) {
+    footer{
+        display:none;
+    }
+}

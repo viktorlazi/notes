@@ -3,6 +3,16 @@ p{
 }
 .App{
     margin-top:100px;
-    display:flex;
-    justify-content: space-around;
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+}
+#editor{
+
+}
+
+@media only screen and (max-width: 800px) {
+    .App{
+        display:block;
+        margin-top:10px;
+    }
 }

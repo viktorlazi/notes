@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import './glava.css'
+import './noge.css'
 
 export default class Glava extends Component {
     render() {
         return (
-            <header>
-                <nav>
-                    <h1 class="desk">Notes</h1>
-                    <ul class="desk">
+            <footer>
+                <ul class="noge">
                         <li>
                             1,204 users
                         </li>
@@ -18,12 +16,7 @@ export default class Glava extends Component {
                             1,450,332 words
                         </li>
                     </ul>
-                    <ul id="log-ul">
-                        <li><a href="/login">Log In</a></li>
-                        <li><a href="/register">Register</a></li>
-                    </ul>
-                </nav>
-            </header>
+            </footer>
         )
     }
 }
