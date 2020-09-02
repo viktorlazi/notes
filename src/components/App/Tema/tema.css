@@ -7,8 +7,7 @@ body{
     padding:5px;
 }
 .tree p{
-
-    display:block;
+    display:inline-block;
     margin:8px;
 }
 .tree .djeca{
@@ -17,4 +16,11 @@ body{
 }
 .tree .djeca p{
     padding-left: 7px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .App{
+        width:50%;
+        margin: 0 auto;
+    }
 }

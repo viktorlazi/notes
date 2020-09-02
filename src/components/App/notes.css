@@ -1,6 +1,8 @@
-body{
-
-}
 p{
     cursor: pointer;
+}
+.App{
+    margin-top:100px;
+    display:flex;
+    justify-content: space-around;
 }

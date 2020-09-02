@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Tema from './Tema/Tema'
 import './notes.css'
 import { Editor } from '@tinymce/tinymce-react';
+import Glava from '../Glava';
 
 class Notes extends Component {
 
@@ -100,6 +101,8 @@ class Notes extends Component {
 
     render() {
         return(
+            <div>
+                <Glava/>
             <div className="App">
                 <div className="tree">
                     {
@@ -127,6 +130,7 @@ class Notes extends Component {
                     }}
                     onEditorChange={this.handleEditorChange}
                 />
+            </div>
             </div>
         )
     }
