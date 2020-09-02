@@ -1,7 +1,10 @@
 header{
     width:100%;
-    background-color:rgba(132, 142, 196, 0.4);
+    background-color:#db7b48;
     margin-bottom:10px;
+}
+nav{
+    display:flex;
 }
 ul{
     margin:0;
@@ -9,8 +12,9 @@ ul{
 }
 ul li{
     display:inline-block;
-    padding:5px;
+    padding:15px;
 }
 ul li a{
     text-decoration:none;
+    color:black;
 }

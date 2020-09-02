@@ -10,8 +10,7 @@ export default class Tema extends Component {
         return (djeca ? {display:'block'}:{display:'none'})
     }
     aktivni = (aktivni) =>{
-        
-        return ((aktivni===this.props.state.id) ? {color:'#3a4bad'}:{color:'black'})
+        return ((aktivni===this.props.state.id) ? {color:'#db7b48'}:{color:'black'})
     }
     addNew = (path) =>{
         path = path===undefined?[]:path;
@@ -38,7 +37,7 @@ export default class Tema extends Component {
                             state={state} />
                         }
                     )}
-                    <p onClick={()=>this.addNew()} style={{color:'#db7b48'}}>+add new</p>
+                    <p onClick={()=>this.addNew()} style={{color:'#3a4bad'}}>+add new</p>
 
                 </div>
             </div>

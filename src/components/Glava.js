@@ -7,8 +7,8 @@ export default class Glava extends Component {
             <header>
                 <nav>
                     <ul>
-                    <li><a>Log In</a></li>
-                    <li><a>Register</a></li>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/register">Register</a></li>
                     </ul>
                 </nav>
             </header>

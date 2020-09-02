@@ -103,34 +103,34 @@ class Notes extends Component {
         return(
             <div>
                 <Glava/>
-            <div className="App">
-                <div className="tree">
-                    {
-                        this.state.struktura.map(
-                            (state) => <Tema 
-                            changeAktivni={(a)=>this.changeAktivni(a)}
-                            aktivni={this.state.aktivni} 
-                            state={state}
-                            addNew={(path)=>this.addNew(path)}/>
-                        )
-                    }
-                    <p onClick={()=>this.addNew()} style={{color:'#db7b48'}}>+add new</p>
+                <div className="App">
+                    <div className="tree">
+                        {
+                            this.state.struktura.map(
+                                (state) => <Tema 
+                                changeAktivni={(a)=>this.changeAktivni(a)}
+                                aktivni={this.state.aktivni} 
+                                state={state}
+                                addNew={(path)=>this.addNew(path)}/>
+                            )
+                        }
+                        <p onClick={()=>this.addNew()} style={{color:'#3a4bad'}}>+add new</p>
+                    </div>
+                    <Editor
+                        value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}
+                        
+                        init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount'
+                        ]
+                        }}
+                        onEditorChange={this.handleEditorChange}
+                    />
                 </div>
-                <Editor
-                    value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}
-                    
-                    init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                        'advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                    ]
-                    }}
-                    onEditorChange={this.handleEditorChange}
-                />
-            </div>
             </div>
         )
     }
