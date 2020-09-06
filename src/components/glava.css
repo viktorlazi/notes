@@ -29,11 +29,4 @@ h1{
 }
 
 @media only screen and (max-width: 800px) {
-    .desk{
-        display:none;
-    }
-    #log-ul{
-        display:flex;
-        border:none;
-    }
 }

@@ -73,8 +73,8 @@ class Notes extends Component {
     aktivni = (aktivni) =>{
         return (aktivni ? {color:'#3a4bad'}:{display:'black'})
     }
-    editorValue = (sadrzaj) =>{
-        return (sadrzaj===undefined?'topic - ':sadrzaj)
+    generateSadrzaj = (sadrzaj) =>{
+        return (sadrzaj===undefined?'topic - ':('topic - ' + sadrzaj))
     }
     shema = (naslov) =>{
         return {id: this.state.sadrzaj.length, naslov:naslov, djeca:[]}
@@ -85,19 +85,17 @@ class Notes extends Component {
                 dijete =>{
                     return dijete.id === id
                 }
-        ))
+        )[0])
     }
     path = (arr, p, naslov) =>{
-        if(p.length > 1){
-            let a = this.dobijDijetePrekoId(this.path(arr, p, naslov), p[0]);
-            p.slice(1);
-            return a;
-        }else if(p.length ===1){
-            let a = this.dobijDijetePrekoId(arr, p[0]);
-            a.push(this.shema(naslov));
-            return a.djeca;
+        if(p.length > 0){
+            let dijete = this.dobijDijetePrekoId(arr, p[0]);
+            dijete.djeca = this.path(dijete.djeca, p.slice(1), naslov);
+            return arr;
+
         }else if(p.length ===0){
-            
+            arr.push(this.shema(naslov));
+            return arr;
         }
     }
 
@@ -107,21 +105,19 @@ class Notes extends Component {
         
 
         let naslov = window.prompt();
-        console.log(this.path(this.state.struktura, path, naslov));
+
+        let nova_struktura = this.path(this.state.struktura, path, naslov);
+        let novi_sadrzaj = this.state.sadrzaj;
+        novi_sadrzaj.push(this.generateSadrzaj(naslov));
+
         
-        
-        /*let a = [...this.state.struktura];
-        if(path.length === 0){
-            a.push(this.shema(naslov));
-        }else{
-            
-        }
         this.setState(
             {
-                struktura:a
+                struktura:nova_struktura,
+                sadrzaj:novi_sadrzaj
             }
         );
-        */
+        
 
     }
 
@@ -143,7 +139,7 @@ class Notes extends Component {
                         <p onClick={()=>this.addNew()} style={{color:'#3a4bad'}}>+add new</p>
                     </div>
                     <Editor
-                        value={this.editorValue(this.state.sadrzaj[this.state.aktivni])}
+                        value={this.state.sadrzaj[this.state.aktivni]}
                         id="editor"
                         init={{
                         height: 500,

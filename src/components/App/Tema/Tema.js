@@ -21,7 +21,7 @@ export default class Tema extends Component {
     render() {
         return (
             <div className="">
-                {/* prva linija je tema, a ispod su default 
+                {/*  prva linija je tema, a ispod su default 
                     default skrivena djeca */}
                 <p style={this.aktivni(this.props.aktivni)} onClick={()=>{
                     this.setState({djeca:!this.state.djeca})
