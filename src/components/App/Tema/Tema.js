@@ -35,7 +35,7 @@ export default class Tema extends Component {
                     this.props.changeAktivni(this.props.state.id)
                     }}>{this.props.state.naslov}</p>
                 
-                <img src={Bin} onClick={this.smece()} class="trash"></img>
+                <img src={Bin} onClick={()=>this.smece()} class="trash"></img>
 
                 </div>
 

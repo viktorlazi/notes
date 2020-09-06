@@ -132,7 +132,28 @@ class Notes extends Component {
     }
 
     smece = (path) =>{
-        console.log(path);
+
+        let nova_struktura = this.ubijDijete(this.state.struktura, path);
+    
+        this.setState(
+            {
+                struktura:nova_struktura
+            }
+        );
+    }
+
+    ubijDijete = (arr, p) =>{
+        if(p.length > 0){
+            
+            let dijete = this.dobijDijetePrekoId(arr, p[0]);
+            dijete.djeca = this.ubijDijete(dijete.djeca, p.slice(1));
+            return arr;
+
+        }else if(p.length ===0){
+
+            arr.push(this.shema(naslov));
+            return arr;
+        }
     }
 
     render() {
