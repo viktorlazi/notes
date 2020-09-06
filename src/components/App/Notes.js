@@ -79,25 +79,50 @@ class Notes extends Component {
     shema = (naslov) =>{
         return {id: this.state.sadrzaj.length, naslov:naslov, djeca:[]}
     }
-    dobijDijetePrekoId = (id) =>{
+    dobijDijetePrekoId = (arr, id) =>{
         return(
-            this.state.struktura.filter(
+            arr.filter(
                 dijete =>{
                     return dijete.id === id
                 }
         ))
     }
-    path = (p) =>{
-        
+    path = (arr, p, naslov) =>{
+        if(p.length > 1){
+            let a = this.dobijDijetePrekoId(this.path(arr, p, naslov), p[0]);
+            p.slice(1);
+            return a;
+        }else if(p.length ===1){
+            let a = this.dobijDijetePrekoId(arr, p[0]);
+            a.push(this.shema(naslov));
+            return a.djeca;
+        }else if(p.length ===0){
+            
+        }
     }
 
     addNew = (path) =>{
-
         path = path===undefined?[]:path;
         console.log(path);
-        this.dobijDijetePrekoId(path[0]).filter(
+        
 
-        )
+        let naslov = window.prompt();
+        console.log(this.path(this.state.struktura, path, naslov));
+        
+        
+        /*let a = [...this.state.struktura];
+        if(path.length === 0){
+            a.push(this.shema(naslov));
+        }else{
+            
+        }
+        this.setState(
+            {
+                struktura:a
+            }
+        );
+        */
+
     }
 
     render() {
