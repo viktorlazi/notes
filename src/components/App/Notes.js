@@ -131,6 +131,10 @@ class Notes extends Component {
 
     }
 
+    smece = (path) =>{
+        console.log(path);
+    }
+
     render() {
         return(
             <div>
@@ -140,6 +144,7 @@ class Notes extends Component {
                         {
                             this.state.struktura.map(
                                 (state) => <Tema 
+                                smece={(path)=>this.smece(path)}
                                 changeAktivni={(a)=>this.changeAktivni(a)}
                                 aktivni={this.state.aktivni} 
                                 state={state}

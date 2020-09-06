@@ -21,9 +21,35 @@ body{
     padding: 0 20px;
 }
 
+.trash{
+    cursor: pointer;
+    display:inline;
+    opacity: 0;
+
+    transition: opacity 1s linear;
+    }
+.naslov:hover + .trash{
+    opacity: 1;
+}
+.trash:hover
+{
+    opacity:1;
+    transition:none;
+}
+.tema_smece{
+    display:inline-flex;
+    align-items: center;
+}
+
 @media only screen and (min-width: 800px) {
     .App{
         width:70%;
         margin: 0 auto;
     }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
