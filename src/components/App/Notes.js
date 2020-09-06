@@ -87,7 +87,17 @@ class Notes extends Component {
                 }
         )[0])
     }
-    path = (arr, p, naslov) =>{
+    path = (arr, p, naslov) =>{ 
+
+        // ako je p.length 0 -> dodaje dijete u nultom levelu
+        // ako je veci -> mora nac koje djete u iducem levelu ima id p[0]
+        //             -> onda ponovit onoliko puta koliki je p
+        
+        // !!! nije mi jasno zasto se ove sve varijable ponasaju kao da
+        //     san ih pass by reference, tj. sve se promjene vracaju
+        //     sve do state.struktura
+        // ???
+
         if(p.length > 0){
             let dijete = this.dobijDijetePrekoId(arr, p[0]);
             dijete.djeca = this.path(dijete.djeca, p.slice(1), naslov);
