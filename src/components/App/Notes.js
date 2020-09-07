@@ -79,7 +79,9 @@ class Notes extends Component {
     }
     shema = (naslov) =>{
 
-        if(this.state.smece === []){
+        this.changeAktivni(this.state.sadrzaj.length);
+        
+        if(this.state.smece.length === 0){
             return {
                 id: this.state.sadrzaj.length,
                 naslov:naslov, 
@@ -87,6 +89,7 @@ class Notes extends Component {
             }
         }else{
             let id = this.state.smece[0];
+            this.changeAktivni(id);
             this.setState(
                 {
                     smece: this.state.smece.splice(1)
@@ -131,23 +134,25 @@ class Notes extends Component {
 
     addNew = (path) =>{
         path = path===undefined?[]:path;
-        console.log(path);
-        
+        let naslov = window.prompt('Topic name?');
 
-        let naslov = window.prompt();
+        if(naslov){
+            let nova_struktura = this.path(this.state.struktura, path, naslov);
+            let novi_sadrzaj = this.state.sadrzaj;
 
-        let nova_struktura = this.path(this.state.struktura, path, naslov);
-        let novi_sadrzaj = this.state.sadrzaj;
-        novi_sadrzaj.push(this.generateSadrzaj(naslov));
-
-        
-        this.setState(
-            {
-                struktura:nova_struktura,
-                sadrzaj:novi_sadrzaj
+            if(this.state.smece.length > 0){
+                novi_sadrzaj[this.state.aktivni] = this.generateSadrzaj(naslov);
+            }else{
+                novi_sadrzaj.push(this.generateSadrzaj(naslov));
+                
             }
-        );
-        
+            this.setState(
+                {
+                    struktura:nova_struktura,
+                    sadrzaj:novi_sadrzaj
+                }
+            );
+        }
 
     }
 
@@ -157,7 +162,7 @@ class Notes extends Component {
         let nova_struktura = this.ubijDijete(this.state.struktura, path);
         let novi_sadrzaj=this.state.sadrzaj;
 
-        this.state.smece.push(p[p-1]);
+        this.state.smece.push(p[p.length-1]);
         novi_sadrzaj[path[path.length-1]] = undefined;
 
 

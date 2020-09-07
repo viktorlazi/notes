@@ -7,7 +7,6 @@ export default class Tema extends Component {
         djeca : 0,
     }
     djeca = (djeca) =>{
-        //this.props.changeAktivni(this.props.state.id);
         return (djeca ? {display:'block'}:{display:'none'})
     }
     aktivni = (aktivni) =>{
