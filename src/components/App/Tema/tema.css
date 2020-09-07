@@ -27,12 +27,11 @@ body{
     opacity: 0;
 
     transition: opacity 1s linear;
-    }
+}
 .naslov:hover + .trash{
     opacity: 1;
 }
-.trash:hover
-{
+.trash:hover{
     opacity:1;
     transition:none;
 }
@@ -45,6 +44,11 @@ body{
     .App{
         width:70%;
         margin: 0 auto;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .tree{
+        margin-bottom:20px;
     }
 }
 

@@ -4,6 +4,7 @@ import './notes.css'
 import { Editor } from '@tinymce/tinymce-react';
 import Glava from '../Glava';
 import Noge from '../Noge';
+import Viktor from '../Viktor'
 
 class Notes extends Component {
 
@@ -84,7 +85,7 @@ class Notes extends Component {
         if(this.state.smece.length === 0){
             return {
                 id: this.state.sadrzaj.length,
-                naslov:naslov, 
+                naslov:naslov,
                 djeca:[]
             }
         }else{
@@ -161,14 +162,14 @@ class Notes extends Component {
         // moras rekurzivno dodavat djecu u smece ->
         // iskoristi metodu funkcije path
 
-
-        let p = path;
         let nova_struktura = this.ubijDijete(this.state.struktura, path);
         let novi_sadrzaj=this.state.sadrzaj;
 
-        this.state.smece.push(p[p.length-1]);
+        this.state.smece.push(path[path.length-1]);
         novi_sadrzaj[path[path.length-1]] = undefined;
 
+        //console.log(this.rekurzivnoSmece(nova_struktura, []));
+        
 
         this.setState(
             {
@@ -178,17 +179,31 @@ class Notes extends Component {
         );
     }
 
+    /* kako ovo??
+
+    rekurzivnoSmece = (arr, id) =>{
+        // dobije parent temu koje ide u smece
+        // vraca id svakog djeteta i njega
+        
+        id = id===undefined?[]:id;
+        id.unshift(arr.id);
+        
+        
+        for(let i = 0; i<arr.djeca.length; i++){
+            id.unshift(this.rekurzivnoSmece(arr.djeca[i], id));
+        }
+        return id;
+    }
+    */
+
     ubijDijete = (arr, p) =>{
         if(p.length > 1){
-
             let dijete = this.dobijDijetePrekoId(arr, p[0]);
             dijete.djeca = this.ubijDijete(dijete.djeca, p.slice(1));
             return arr;
 
-        }else if(p.length ===1){
-
-            
-            let sva_djeca_koja_nemaju_taj_id = arr.filter(function( d ) {
+        }else if(p.length ===1){            
+            let sva_djeca_koja_nemaju_taj_id = arr.filter(function(d) {
                 return d.id !== p[0];
             });
             return sva_djeca_koja_nemaju_taj_id;
@@ -229,6 +244,7 @@ class Notes extends Component {
                     />
                 </div>
                 <Noge/>
+                <Viktor/>
             </div>
         )
     }
