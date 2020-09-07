@@ -135,16 +135,15 @@ class Notes extends Component {
     addNew = (path) =>{
         path = path===undefined?[]:path;
         let naslov = window.prompt('Topic name?');
-
+        
         if(naslov){
             let nova_struktura = this.path(this.state.struktura, path, naslov);
             let novi_sadrzaj = this.state.sadrzaj;
-
+            
             if(this.state.smece.length > 0){
                 novi_sadrzaj[this.state.aktivni] = this.generateSadrzaj(naslov);
             }else{
                 novi_sadrzaj.push(this.generateSadrzaj(naslov));
-                
             }
             this.setState(
                 {
@@ -157,6 +156,11 @@ class Notes extends Component {
     }
 
     smece = (path) =>{
+
+        // todo : 
+        // moras rekurzivno dodavat djecu u smece ->
+        // iskoristi metodu funkcije path
+
 
         let p = path;
         let nova_struktura = this.ubijDijete(this.state.struktura, path);
