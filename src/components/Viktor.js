@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 export default class Viktor extends Component {
     style = {
         textAlign:'center',

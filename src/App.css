@@ -17,7 +17,12 @@ header{
         display:block;
     }
     header{
-        display:none;
+        display:block;
+        width:100%;
+        
         /*hamburger napravi*/
+    }
+    header .stats{
+        display:none;
     }
 }

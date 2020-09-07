@@ -7,7 +7,7 @@ export default class Glava extends Component {
             <header>
                 <nav>
                     <h1 class="desk">Notes</h1>
-                    <ul class="desk">
+                    <ul class="stats">
                         <li>
                             1,204 users
                         </li>
