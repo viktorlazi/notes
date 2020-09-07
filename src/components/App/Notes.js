@@ -57,7 +57,8 @@ class Notes extends Component {
         sadrzaj:["topic-biology", "topic - behaviour",
                 "topic - amigdala", "topic - bacteria",
                 "topic - filosophy", "topic - technology",
-                "topic - society"]
+                "topic - society"],
+        smece:[]
     }
 
 
@@ -77,7 +78,26 @@ class Notes extends Component {
         return (sadrzaj===undefined?'topic - ':('topic - ' + sadrzaj))
     }
     shema = (naslov) =>{
-        return {id: this.state.sadrzaj.length, naslov:naslov, djeca:[]}
+
+        if(this.state.smece === []){
+            return {
+                id: this.state.sadrzaj.length,
+                naslov:naslov, 
+                djeca:[]
+            }
+        }else{
+            let id = this.state.smece[0];
+            this.setState(
+                {
+                    smece: this.state.smece.splice(1)
+                }
+            );
+            return {
+                id: id,
+                naslov:naslov, 
+                djeca:[]
+            }
+        }
     }
     dobijDijetePrekoId = (arr, id) =>{
         return(
@@ -133,26 +153,36 @@ class Notes extends Component {
 
     smece = (path) =>{
 
+        let p = path;
         let nova_struktura = this.ubijDijete(this.state.struktura, path);
-    
+        let novi_sadrzaj=this.state.sadrzaj;
+
+        this.state.smece.push(p[p-1]);
+        novi_sadrzaj[path[path.length-1]] = undefined;
+
+
         this.setState(
             {
-                struktura:nova_struktura
+                struktura:nova_struktura,
+                sadrzaj:novi_sadrzaj
             }
         );
     }
 
     ubijDijete = (arr, p) =>{
-        if(p.length > 0){
-            
+        if(p.length > 1){
+
             let dijete = this.dobijDijetePrekoId(arr, p[0]);
             dijete.djeca = this.ubijDijete(dijete.djeca, p.slice(1));
             return arr;
 
-        }else if(p.length ===0){
+        }else if(p.length ===1){
 
-            arr.push(this.shema(naslov));
-            return arr;
+            
+            let sva_djeca_koja_nemaju_taj_id = arr.filter(function( d ) {
+                return d.id !== p[0];
+            });
+            return sva_djeca_koja_nemaju_taj_id;
         }
     }
 
