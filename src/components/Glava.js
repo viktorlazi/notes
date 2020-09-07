@@ -19,8 +19,8 @@ export default class Glava extends Component {
                         </li>
                     </ul>
                     <ul id="log-ul">
-                        <li><a href="/login">Log In</a></li>
-                        <li><a href="/register">Register</a></li>
+                        <li><a href="/notes/login">Log In</a></li>
+                        <li><a href="/notes/register">Register</a></li>
                     </ul>
                 </nav>
             </header>

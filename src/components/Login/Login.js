@@ -13,8 +13,10 @@ export default class Login extends Component {
                         <div class="password"><input type="password" class="pass-input" placeholder="Password" /></div>
                     </div>
                     <button class="signin-button">LOG IN</button>
-                    <div class="link"><a href="../register">Don't have an account? Register</a></div>
-                </div>
+                    <div class="link"><a href="/notes/register">Don't have an account? Register</a></div>
+                    <div class="link"><a href="/notes/">Go back to preview</a></div>
+
+           </div>
             </div>
         )
     }

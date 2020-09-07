@@ -14,7 +14,8 @@ export default class Register extends Component {
                         <div class="password"><input type="password" class="pass-input" placeholder="Repeat password" /></div>
                     </div>
                     <button class="signin-button">REGISTER</button>
-                    <div class="link"><a href="../login">Have an account? Log in</a></div>
+                    <div class="link"><a href="/notes/login">Have an account? Log in</a></div>
+                    <div class="link"><a href="/notes/">Go back to preview</a></div>
                 </div>
             </div>
 
