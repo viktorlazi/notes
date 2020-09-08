@@ -1,7 +1,7 @@
 <?php
 include_once('pass.php');
 
-class db {
+class DB {
         private static function connect() {
                 $info = new Info();
                 $pdo = new PDO('mysql:host=127.0.0.1:3306;dbname=u670267326_notes;charset=utf8',$info->username(),$info->password());
@@ -16,5 +16,11 @@ class db {
                     $data = $statement->fetchAll();
                     return $data;
                 }
+        }
+
+        public static function dodajUser($nm, $ps, $js){
+                $s = "INSERT INTO users (username, password, state)
+                VALUES ('{$nm}','{$ps}','{$js}')";
+                DB::query($s);
         }
 }
