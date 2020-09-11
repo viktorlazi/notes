@@ -2,7 +2,9 @@
     include_once('classes/db.php');
 
     
-    DB::dodajUser('nodf', 'dfdwf', "[{'''}]");
-    
-
+    if($_POST['state']){
+        $s = $_POST['state'];
+        DB::dodajUser('nodf', 'dfdwf', "{$s}");
+     
+    }
 ?>

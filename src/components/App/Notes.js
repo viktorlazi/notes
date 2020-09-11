@@ -4,7 +4,9 @@ import './notes.css'
 import { Editor } from '@tinymce/tinymce-react';
 import Glava from '../Glava';
 import Noge from '../Noge';
-import Viktor from '../Viktor'
+import Viktor from '../Viktor';
+
+import axios from 'axios';
 
 class Notes extends Component {
 
@@ -13,7 +15,13 @@ class Notes extends Component {
         this.handleEditorChange = this.handleEditorChange.bind(this);
 
     }
-
+    state={
+        struktura:[],
+        aktivni:{},
+        smece:{},
+        sadrzaj:[]
+    };
+/*
     state = {
         struktura:[
             {
@@ -61,12 +69,23 @@ class Notes extends Component {
                 "topic - society"],
         smece:[]
     }
+    */
 
+componentDidMount(){
+}
 
     handleEditorChange(content, editor){
         let a = [...this.state.sadrzaj];
         a[this.state.aktivni] = content;
         this.setState({sadrzaj:a});
+
+
+    axios('http://viktorlazi.com/php/json.php')
+    .then(
+        response=>response.json())
+    .then(data => ()=>{
+        console.log(data);
+    });
     }
     
     changeAktivni = (a) =>{

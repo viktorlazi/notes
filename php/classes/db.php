@@ -23,4 +23,9 @@ class DB {
                 VALUES ('{$nm}','{$ps}','{$js}')";
                 DB::query($s);
         }
+        public static function userById($id){
+                $arr = DB::query('SELECT * FROM users WHERE id='.$id);
+                
+                return $arr;
+        }
 }
