@@ -6,7 +6,6 @@ import Glava from '../Glava';
 import Noge from '../Noge';
 import Viktor from '../Viktor';
 
-import axios from 'axios';
 
 class Notes extends Component {
 
