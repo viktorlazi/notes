@@ -180,12 +180,17 @@ componentDidMount(){
        const zadnjiPath = path[path.length-1];
        
        console.log(this.getDijete(nova_struktura, path));
-       this.state.smece.push( // doda u smece sve id
-            ...this.rekurzivnoSmece(
-                this.getDijete(nova_struktura, path)
-            )
-        );
+       let novo_smece = [
+           ...this.rekurzivnoSmece(
+            this.getDijete(nova_struktura, path)
+           )
+        ];
+        this.state.smece.push(...novo_smece); // doda u smece sve id
+
         nova_struktura = this.ubijDijete(this.state.struktura, path);
+        novo_smece.forEach(e =>{
+            novi_sadrzaj[e] = undefined;
+        });
 
         this.setState(
             {
