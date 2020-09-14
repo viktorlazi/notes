@@ -15,13 +15,16 @@ class Notes extends Component {
         this.handleEditorChange = this.handleEditorChange.bind(this);
 
     }
+    
+    /*
     state={
         struktura:[],
         aktivni:{},
         smece:{},
         sadrzaj:[]
     };
-/*
+    */
+
     state = {
         struktura:[
             {
@@ -69,7 +72,9 @@ class Notes extends Component {
                 "topic - society"],
         smece:[]
     }
-    */
+
+    //https://www.youtube.com/watch?v=888VYbPA3cU
+    
 
 componentDidMount(){
 }
@@ -78,14 +83,7 @@ componentDidMount(){
         let a = [...this.state.sadrzaj];
         a[this.state.aktivni] = content;
         this.setState({sadrzaj:a});
-
-
-    axios('http://viktorlazi.com/php/json.php')
-    .then(
-        response=>response.json())
-    .then(data => ()=>{
-        console.log(data);
-    });
+    
     }
     
     changeAktivni = (a) =>{
@@ -108,7 +106,7 @@ componentDidMount(){
                 djeca:[]
             }
         }else{
-            let id = this.state.smece[0];
+            const id = this.state.smece[0];
             this.changeAktivni(id);
             this.setState(
                 {
@@ -198,22 +196,19 @@ componentDidMount(){
         );
     }
 
-    /* kako ovo??
 
-    rekurzivnoSmece = (arr, id) =>{
-        // dobije parent temu koje ide u smece
-        // vraca id svakog djeteta i njega
-        
-        id = id===undefined?[]:id;
-        id.unshift(arr.id);
-        
-        
-        for(let i = 0; i<arr.djeca.length; i++){
-            id.unshift(this.rekurzivnoSmece(arr.djeca[i], id));
-        }
+    rekurzivnoSmece = (arr) =>{
+        // dobije djecu parent teme koje ide u smece
+        // vraca array-id svakog djeteta i njega
+        let id=[];
+        arr.forEach(e => {
+            id.push(e.id);
+            if(e.djeca.length > 0){
+                id.push(...this.rekurzivnoSmece(e.djeca));
+            }         
+        });
         return id;
     }
-    */
 
     ubijDijete = (arr, p) =>{
         if(p.length > 1){
