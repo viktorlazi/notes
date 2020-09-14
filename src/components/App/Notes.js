@@ -16,15 +16,15 @@ class Notes extends Component {
 
     }
     
-    /*
+    
     state={
         struktura:[],
         aktivni:{},
         smece:{},
         sadrzaj:[]
     };
-    */
-
+   
+/*
     state = {
         struktura:[
             {
@@ -71,12 +71,27 @@ class Notes extends Component {
                 "topic - filosophy", "topic - technology",
                 "topic - society"],
         smece:[]
-    }
+    }*/
 
     //https://www.youtube.com/watch?v=888VYbPA3cU
     
 
 componentDidMount(){
+    fetch('http://viktorlazi.com/php/json.php', {
+            method:'post',
+            headers:{
+                "Accept":"application/json"
+            }
+        })
+        .then(res => res.json())
+        .then((data) => {
+            this.setState(
+                    JSON.parse(data)
+            )
+        })
+        .catch(console.log);
+        
+    
 }
 
     handleEditorChange(content, editor){
