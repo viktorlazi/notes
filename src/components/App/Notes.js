@@ -173,20 +173,19 @@ componentDidMount(){
 
     }
 
-    smece = (path) =>{
-
-        // todo : 
-        // moras rekurzivno dodavat djecu u smece ->
-        // iskoristi metodu funkcije path
-
-        let nova_struktura = this.ubijDijete(this.state.struktura, path);
-        let novi_sadrzaj=this.state.sadrzaj;
-
-        this.state.smece.push(path[path.length-1]);
-        novi_sadrzaj[path[path.length-1]] = undefined;
-
-        //console.log(this.rekurzivnoSmece(nova_struktura, []));
-        
+    smece = (path) =>{     
+       let novi_sadrzaj=this.state.sadrzaj;
+       let nova_struktura = this.state.struktura;
+       
+       const zadnjiPath = path[path.length-1];
+       
+       console.log(this.getDijete(nova_struktura, path));
+       this.state.smece.push( // doda u smece sve id
+            ...this.rekurzivnoSmece(
+                this.getDijete(nova_struktura, path)
+            )
+        );
+        nova_struktura = this.ubijDijete(this.state.struktura, path);
 
         this.setState(
             {
@@ -196,17 +195,32 @@ componentDidMount(){
         );
     }
 
+    getDijete = (arr, p) =>{
+        if(p.length===0){
+            return arr;
+        }else{
+            let dijete = arr.filter(
+                function(x){
+                    return x.id === p[0];
+                }
+                );             
+                return this.getDijete(dijete, p.slice(1));
+            }
+        }
+    
 
     rekurzivnoSmece = (arr) =>{
         // dobije djecu parent teme koje ide u smece
         // vraca array-id svakog djeteta i njega
         let id=[];
-        arr.forEach(e => {
-            id.push(e.id);
-            if(e.djeca.length > 0){
-                id.push(...this.rekurzivnoSmece(e.djeca));
-            }         
-        });
+        if(arr){
+            arr.forEach(e => {
+                id.push(e.id);
+                if(e.djeca.length > 0){
+                    id.push(...this.rekurzivnoSmece(e.djeca));
+                }         
+            });
+        }
         return id;
     }
 
