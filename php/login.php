@@ -34,6 +34,7 @@
                         ':user_id'=>$user_id
                     )
                 );
+                setcookie("SNID", $t, time()+60*60*24, '/', NULL, NULL, TRUE);
             }else{
                 echo'password wrong';
             }
