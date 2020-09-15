@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import './glava.css'
+import {Cookies} from 'react-cookie'
+
 
 export default class Glava extends Component {
+
+    componentDidMount(){
+        
+    }
+
     render() {
         return (
             <header>
