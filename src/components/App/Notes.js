@@ -70,9 +70,10 @@ class Notes extends Component {
                 "topic - filosophy", "topic - technology",
                 "topic - society"],
         smece:[]
-    }*/
+    }
+    
+    */
 
-    //https://www.youtube.com/watch?v=888VYbPA3cU
     
 
 componentDidMount(){
@@ -85,7 +86,7 @@ componentDidMount(){
         .then(res => res.json())
         .then((data) => {
             this.setState(
-                    JSON.parse(data)
+                JSON.parse(data)
             )
         })
         .catch(console.log);
