@@ -1,7 +1,8 @@
 <?php
+
     include_once('classes/db.php');
 
-    if($_POST['username'] && $_POST['password']){
+    if(isset($_POST['username']) && isset($_POST['password'])){
         $u = $_POST['username'];
         $p = $_POST['password'];
 
@@ -34,7 +35,13 @@
                         ':user_id'=>$user_id
                     )
                 );
+                
+                header('Content-Type: text/html; charset=utf-8');
+
                 setcookie("SNID", $t, time()+60*60*24, '/', NULL, NULL, TRUE);
+                echo $t;
+                
+                
             }else{
                 echo'password wrong';
             }
@@ -43,15 +50,7 @@
             echo'netocno username';
         }
     }else{
-        echo'nepostoji';
+        echo'server nije dobia username i passw';
+        
     }
 ?>
-
-<html>
-<form action="login.php" method="POST">
-    <input type="text" name="username" placeholder="name" />
-    <input type="text" name="password"/>
-    <input type="submit"/>
-</form>
-
-</html>
