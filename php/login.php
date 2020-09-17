@@ -2,7 +2,7 @@
 
     include_once('classes/db.php');
 
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(!empty($_POST)){
         $u = $_POST['username'];
         $p = $_POST['password'];
 
@@ -36,9 +36,6 @@
                     )
                 );
                 
-                header('Content-Type: text/html; charset=utf-8');
-
-                setcookie("SNID", $t, time()+60*60*24, '/', NULL, NULL, TRUE);
                 echo $t;
                 
                 
@@ -54,3 +51,16 @@
         
     }
 ?>
+
+<html>
+<body>
+
+<form method="POST" action="login.php">
+    <input name="username"/>
+    <input name="password"/>
+    <input type="submit"/>
+</form>
+
+</body>
+
+</html>

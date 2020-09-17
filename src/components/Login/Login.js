@@ -32,18 +32,14 @@ export default class Login extends Component {
     }
     */
    posalji = () =>{
-    axios.post('http://viktorlazi.com/php/login.php', {},{
-        auth:{
-            username:'viktor',
-            password:'passw'
-        }
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const tok = 'viktor:passw';
+    const hash = tok;
+    const Basic = 'Basic ' + hash;
+   axios.get('http://viktorlazi.com/php/login.php', {headers : { 'Authorization' : Basic }})
+   .then(function(response) {
+       console.log(response.data);
+       console.log(response.headers['Authorization']);
+   }).catch(err => console.log(err));
    }
 
     render() {
