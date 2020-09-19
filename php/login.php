@@ -1,8 +1,8 @@
 <?php
-
+ header("Access-Control-Allow-Origin: *");
     include_once('classes/db.php');
 
-    if(!empty($_POST)){
+    if(!empty($_POST['login'])){
         $u = $_POST['username'];
         $p = $_POST['password'];
 

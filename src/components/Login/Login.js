@@ -2,44 +2,26 @@ import React, { Component } from 'react'
 import './login.css'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import FormData from 'formdata'
 
 export default class Login extends Component {
 
-    /*
+ 
     posalji = () =>{
-
-        let u = "viktor";
-        let p = "passw";
-        
-        console.log(Cookies.get()); 
-
-        fetch('http://viktorlazi.com/php/login.php', {
-            method:'post',
-            headers:{
-                'Accept':'text/html',
-                'Content-Type':'text/html'
-            },
-            body: JSON.stringify({
-                username:u,
-                password:p
-            })
-        })
-        .then(res => res.text())
-        .then((data) => {
-            console.log(data)
+    let formData = new FormData();
+    formData.append('username', 'viktor');
+    formData.append('password', 'passw');
+    
+    axios.post("http://viktorlazi.com/php/login.php",
+        {
+            username:'viktor',
+            password:'passw'
+        }
+        ).then(res=>res)
+        .then((data)=>{
+            console.log(data.data)
         })
         .catch(console.log);
-    }
-    */
-   posalji = () =>{
-    const tok = 'viktor:passw';
-    const hash = tok;
-    const Basic = 'Basic ' + hash;
-   axios.get('http://viktorlazi.com/php/login.php', {headers : { 'Authorization' : Basic }})
-   .then(function(response) {
-       console.log(response.data);
-       console.log(response.headers['Authorization']);
-   }).catch(err => console.log(err));
    }
 
     render() {
