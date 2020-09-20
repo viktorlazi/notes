@@ -17,6 +17,7 @@ class Notes extends Component {
     
     
     state={
+        token:'',
         struktura:[],
         aktivni:{},
         smece:{},
@@ -77,7 +78,13 @@ class Notes extends Component {
     
 
 componentDidMount(){
-    fetch('http://viktorlazi.com/php/json.php', {
+    
+        this.setState({
+            token:localStorage.getItem('user')
+        });
+
+    if(this.state.token.length > 0){
+        fetch('http://viktorlazi.com/php/json.php', {
             method:'post',
             headers:{
                 "Accept":"application/json"
@@ -85,12 +92,17 @@ componentDidMount(){
         })
         .then(res => res.json())
         .then((data) => {
+            let d = JSON.parse(data);
             this.setState(
-                JSON.parse(data)
-            )
-        })
-        .catch(console.log);
-        
+                {
+                    token:this.state.token,
+                    ...d
+                }
+                )
+            })
+            .catch(console.log);
+            
+    }
     
 }
 

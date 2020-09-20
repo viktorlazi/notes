@@ -13,6 +13,7 @@ export default class Login extends Component {
         var d = new URLSearchParams(
             'username='+this.state.username+'&password='+this.state.password
         );
+        localStorage.setItem('kurac', 'kurac');
         
         var requestOptions = {
             method: 'POST',
@@ -24,8 +25,7 @@ export default class Login extends Component {
         .then(result => {
             if(result != 'krivo'){
                 localStorage.setItem('user', result);
-                var router = require('react-router');
-                router.browserHistory.push('../');
+                this.login();
                 
             }else{
                 this.krivo();
@@ -35,6 +35,9 @@ export default class Login extends Component {
    }
    krivo = ()=>{
        alert('incorrect information or user does not exist');
+   }
+   login = () =>{
+       window.location.replace('http://viktorlazi.com/notes');
    }
    handlePassChange = event =>{
        this.setState({
