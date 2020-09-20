@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
 import './login.css'
-import Cookies from 'js-cookie'
-import axios from 'axios'
-import FormData from 'formdata'
 
 export default class Login extends Component {
 
- 
     posalji = () =>{
-    let formData = new FormData();
-    formData.append('username', 'viktor');
-    formData.append('password', 'passw');
-    
-    axios.post("http://viktorlazi.com/php/login.php",
-        {
-            username:'viktor',
-            password:'passw'
-        }
-        ).then(res=>res)
-        .then((data)=>{
-            console.log(data.data)
-        })
-        .catch(console.log);
+        var d = new URLSearchParams(
+            'username=viktor&password=passw'
+        );
+        
+        var requestOptions = {
+            method: 'POST',
+            body: d
+        };
+        
+
+        fetch("http://viktorlazi.com/php/login.php", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
    }
 
     render() {
@@ -38,7 +34,7 @@ export default class Login extends Component {
                     <div class="link"><a href="/notes/register">Don't have an account? Register</a></div>
                     <div class="link"><a href="/notes/">Go back to preview</a></div>
 
-           </div>
+            </div>
             </div>
         )
     }

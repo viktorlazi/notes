@@ -1,11 +1,10 @@
 <?php
- header("Access-Control-Allow-Origin: *");
     include_once('classes/db.php');
+    header('Access-Control-Allow-Origin:*');
 
-    if(!empty($_POST['login'])){
+    if(!empty($_POST)){
         $u = $_POST['username'];
         $p = $_POST['password'];
-
         if(
             DB::query(
                 'SELECT username FROM users WHERE username=:username',
@@ -18,8 +17,6 @@
                     array(':username'=>$u)
                 )[0]['password'] == $p
             ){
-                echo'Logged in!';
-
                 $cstrong = True;
                 $t = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
                 
@@ -40,27 +37,16 @@
                 
                 
             }else{
-                echo'password wrong';
+                //echo'password wrong';
+                echo'netocne informacije';
             }
             
         }else{
-            echo'netocno username';
+            //echo'netocno username';
+            echo'netocne informacije';
         }
     }else{
-        echo'server nije dobia username i passw';
+        echo'post nema informacija';
         
     }
 ?>
-
-<html>
-<body>
-
-<form method="POST" action="login.php">
-    <input name="username"/>
-    <input name="password"/>
-    <input type="submit"/>
-</form>
-
-</body>
-
-</html>
