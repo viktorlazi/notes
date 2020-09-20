@@ -38,15 +38,15 @@
                 
             }else{
                 //echo'password wrong';
-                echo'netocne informacije';
+                echo'krivo';
             }
             
         }else{
             //echo'netocno username';
-            echo'netocne informacije';
+            echo'krivo';
         }
     }else{
-        echo'post nema informacija';
+        echo'krivo';
         
     }
 ?>
