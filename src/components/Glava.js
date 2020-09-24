@@ -30,10 +30,15 @@ export default class Glava extends Component {
             this.setState({
                 loggedIn:false
             });
+            this.props.vajp_it();
         }
     }
-    commit = ()=>{
-        this.props.commit();
+    commit = () =>{
+        if(this.props.commit()){
+            alert('plavo')
+        }else{
+            alert('crveno');
+        }
     }
 
 
@@ -43,6 +48,7 @@ export default class Glava extends Component {
                 <header>
                     <nav>
                         <h1 class="desk">Notes</h1>
+                        {/*
                         <ul class="stats">
                             <li>
                                 1,204 users
@@ -54,6 +60,7 @@ export default class Glava extends Component {
                                 1,450,332 words
                             </li>
                         </ul>
+                        */}
                         <ul id="log-ul">
                             <li><a href="/notes/login">Log In</a></li>
                             <li><a href="/notes/register">Register</a></li>

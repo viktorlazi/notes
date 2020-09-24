@@ -20,15 +20,17 @@ class DB {
                     return $data;
                 }
         }
-
-        public static function dodajUser($nm, $ps, $js){
-                $s = "INSERT INTO users (username, password, state)
-                VALUES ('{$nm}','{$ps}','{$js}')";
-                DB::query($s);
+        public static function idByName($u){
+                $arr = DB::query(
+                        'SELECT * 
+                         FROM users
+                         WHERE username=:u',
+                        array(':u' => $u)
+                );
+                return $arr[0]['id'];
         }
         public static function userById($id){
                 $arr = DB::query('SELECT * FROM users WHERE id='.$id);
-                
                 return $arr;
         }
         public static function tokenId($token){

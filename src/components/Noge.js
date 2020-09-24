@@ -5,6 +5,7 @@ export default class Glava extends Component {
     render() {
         return (
             <footer>
+                
                 <ul class="noge">
                         <li>
                             1,204 users
@@ -16,6 +17,7 @@ export default class Glava extends Component {
                             1,450,332 words
                         </li>
                     </ul>
+                    
             </footer>
         )
     }

@@ -15,7 +15,7 @@
                 DB::query(
                     'SELECT password FROM users WHERE username=:username',
                     array(':username'=>$u)
-                )[0]['password'] == $p
+                )[0]['password'] == sha1($p)
             ){
                 $cstrong = True;
                 $t = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));

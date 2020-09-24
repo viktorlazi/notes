@@ -19,7 +19,7 @@ class Notes extends Component {
     state={
         struktura:[],
         aktivni:{},
-        smece:{},
+        smece:[],
         sadrzaj:[]
     };
    /*
@@ -108,7 +108,6 @@ componentDidMount(){
 }
 
 commitState = () =>{
-    console.log('f za slanje state');
     let novi = JSON.stringify(this.state);
 
     let t = localStorage.getItem('user');
@@ -232,7 +231,7 @@ commitState = () =>{
        let novi_sadrzaj=this.state.sadrzaj;
        let nova_struktura = this.state.struktura;
        
-       const zadnjiPath = path[path.length-1];
+       //const zadnjiPath = path[path.length-1];
        
        console.log(this.getDijete(nova_struktura, path));
        let novo_smece = [
@@ -297,11 +296,21 @@ commitState = () =>{
             return sva_djeca_koja_nemaju_taj_id;
         }
     }
+    vajp_it = () =>{
+        this.setState(
+            {
+                struktura:[],
+                aktivni:{},
+                smece:[],
+                sadrzaj:[]
+            }
+        );
+    }
 
     render() {
         return(
             <div>
-                <Glava commit={()=>this.commitState()} token={localStorage.getItem('user')} />
+                <Glava vajp_it={()=>this.vajp_it()} commit={()=>this.commitState()} token={localStorage.getItem('user')} />
                 <div className="App">
                     <div className="tree">
                         {
@@ -331,7 +340,7 @@ commitState = () =>{
                         onEditorChange={this.handleEditorChange}
                     />
                 </div>
-                <Noge />
+                {/*<Noge />*/}
                 <Viktor/>
             </div>
         )
