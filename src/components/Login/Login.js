@@ -13,7 +13,6 @@ export default class Login extends Component {
         var d = new URLSearchParams(
             'username='+this.state.username+'&password='+this.state.password
         );
-        localStorage.setItem('kurac', 'kurac');
         
         var requestOptions = {
             method: 'POST',

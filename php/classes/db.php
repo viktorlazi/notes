@@ -1,5 +1,8 @@
 <?php
 include_once('pass.php');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 class DB {
         private static function connect() {
@@ -26,6 +29,12 @@ class DB {
         public static function userById($id){
                 $arr = DB::query('SELECT * FROM users WHERE id='.$id);
                 
+                return $arr;
+        }
+        public static function tokenId($token){
+                $arr = DB::query("SELECT user_id FROM tokeni WHERE token=:token", array(
+                        ':token'=>sha1($token)
+                ));
                 return $arr;
         }
 }

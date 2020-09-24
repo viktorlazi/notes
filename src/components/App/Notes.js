@@ -17,14 +17,13 @@ class Notes extends Component {
     
     
     state={
-        token:'',
         struktura:[],
         aktivni:{},
         smece:{},
         sadrzaj:[]
     };
-   
-/*
+   /*
+
     state = {
         struktura:[
             {
@@ -73,35 +72,40 @@ class Notes extends Component {
         smece:[]
     }
     
+    
+
     */
 
-    
-
 componentDidMount(){
-    
-        this.setState({
-            token:localStorage.getItem('user')
-        });
+    let t = localStorage.getItem('user');
 
-    if(this.state.token.length > 0){
-        fetch('http://viktorlazi.com/php/json.php', {
-            method:'post',
+    if(t !== null){
+        var d = new URLSearchParams(
+            'token='+t
+        );
+        
+        var requestOptions = {
+            method: 'POST',
+            body: d,
             headers:{
                 "Accept":"application/json"
             }
-        })
-        .then(res => res.json())
-        .then((data) => {
-            let d = JSON.parse(data);
+        };
+
+        fetch("http://viktorlazi.com/php/json.php", requestOptions)
+        .then(response => response.json())
+        .then(data=>{
             this.setState(
-                {
-                    token:this.state.token,
-                    ...d
-                }
-                )
-            })
-            .catch(console.log);
+                    JSON.parse(data)
+                );
+            }
             
+        
+        ) 
+        .catch(error => console.log('error', error));
+   
+    }else{
+        console.log('not logged in');
     }
     
 }
@@ -273,7 +277,7 @@ componentDidMount(){
     render() {
         return(
             <div>
-                <Glava/>
+                <Glava token={localStorage.getItem('user')} />
                 <div className="App">
                     <div className="tree">
                         {
@@ -303,7 +307,7 @@ componentDidMount(){
                         onEditorChange={this.handleEditorChange}
                     />
                 </div>
-                <Noge/>
+                <Noge />
                 <Viktor/>
             </div>
         )

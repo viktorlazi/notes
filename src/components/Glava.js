@@ -6,16 +6,34 @@ export default class Glava extends Component {
 
     constructor(props){
         super(props);
-        this.loggedIn=false;
+    }
+    state={
+        token:localStorage.getItem('user'),
+        loggedIn:false
     }
 
+    
     componentDidMount(){
-        
+        if(this.state.token != null){
+            this.setState({
+                loggedIn:true
+            });
+        }else{
+            this.setState({
+                loggedIn:false
+            });
+        }
+    }
+    logout=()=>{
+        localStorage.removeItem('user');
+        this.setState({
+            loggedIn:false
+        });
     }
 
 
     render() {
-        if(!this.loggedIn){
+        if(!this.state.loggedIn){
             return (
                 <header>
                     <nav>
@@ -39,7 +57,27 @@ export default class Glava extends Component {
                 </header>
             )
         }else{
-
+            return(
+            <header>
+                    <nav>
+                        <h1 class="desk">Notes</h1>
+                        <ul class="stats">
+                            <li>
+                                1,204 users
+                            </li>
+                            <li>
+                                34,695 topics
+                            </li>
+                            <li>
+                                1,450,332 words
+                            </li>
+                        </ul>
+                        <ul id="logout">
+                            <li><a onClick={()=>this.logout()}>Log out</a></li>
+                        </ul>
+                    </nav>
+                </header>
+            );
         }
     }
 }
