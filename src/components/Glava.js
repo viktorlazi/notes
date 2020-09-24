@@ -35,9 +35,8 @@ export default class Glava extends Component {
     }
     commit = () =>{
         if(this.props.commit()){
-            alert('plavo')
+            
         }else{
-            alert('crveno');
         }
     }
 
@@ -84,7 +83,7 @@ export default class Glava extends Component {
                                 1,450,332 words
                             </li>
                         </ul>
-                        <ul class="logout" onClick={()=>this.commit()} style={{cursor:"pointer"}}>
+                        <ul id="commit" class="logout" onClick={()=>this.commit()} style={{cursor:"pointer"}}>
                             <li>
                                 <strong>
                                     Commit changes
