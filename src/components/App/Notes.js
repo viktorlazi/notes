@@ -82,8 +82,7 @@ componentDidMount(){
     if(t !== null){
         var d = new URLSearchParams(
             'token='+t
-        );
-        
+        );        
         var requestOptions = {
             method: 'POST',
             body: d,
@@ -99,8 +98,6 @@ componentDidMount(){
                     JSON.parse(data)
                 );
             }
-            
-        
         ) 
         .catch(error => console.log('error', error));
    
@@ -109,6 +106,33 @@ componentDidMount(){
     }
     
 }
+
+commitState = () =>{
+    console.log('f za slanje state');
+    let novi = JSON.stringify(this.state);
+
+    let t = localStorage.getItem('user');
+
+    if(t !== null){
+        var d = new URLSearchParams(
+            'token='+t+'&state='+novi
+        );        
+        var requestOptions = {
+            method: 'POST',
+            body: d
+        };
+
+        fetch("http://viktorlazi.com/php/commit.php", requestOptions)
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.log('error', error));
+   
+    }else{
+        console.log('not logged in');
+    }
+
+}
+
 
     handleEditorChange(content, editor){
         let a = [...this.state.sadrzaj];
@@ -277,7 +301,7 @@ componentDidMount(){
     render() {
         return(
             <div>
-                <Glava token={localStorage.getItem('user')} />
+                <Glava commit={()=>this.commitState()} token={localStorage.getItem('user')} />
                 <div className="App">
                     <div className="tree">
                         {

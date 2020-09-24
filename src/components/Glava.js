@@ -25,10 +25,15 @@ export default class Glava extends Component {
         }
     }
     logout=()=>{
-        localStorage.removeItem('user');
-        this.setState({
-            loggedIn:false
-        });
+        if(window.confirm('Log out?')){            
+            localStorage.removeItem('user');
+            this.setState({
+                loggedIn:false
+            });
+        }
+    }
+    commit = ()=>{
+        this.props.commit();
     }
 
 
@@ -70,6 +75,13 @@ export default class Glava extends Component {
                             </li>
                             <li>
                                 1,450,332 words
+                            </li>
+                        </ul>
+                        <ul class="logout" onClick={()=>this.commit()} style={{cursor:"pointer"}}>
+                            <li>
+                                <strong>
+                                    Commit changes
+                                </strong>
                             </li>
                         </ul>
                         <ul id="logout">
