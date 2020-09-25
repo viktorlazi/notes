@@ -72,6 +72,7 @@ export default class Glava extends Component {
             <header>
                     <nav>
                         <h1 class="desk">Notes</h1>
+                        {/*
                         <ul class="stats">
                             <li>
                                 1,204 users
@@ -83,6 +84,8 @@ export default class Glava extends Component {
                                 1,450,332 words
                             </li>
                         </ul>
+                        */
+                        }
                         <ul id="commit" class="logout" onClick={()=>this.commit()} style={{cursor:"pointer"}}>
                             <li>
                                 <strong>
