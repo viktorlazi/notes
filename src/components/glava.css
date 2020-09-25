@@ -24,6 +24,7 @@ h1{
     padding: 10px;
 }
 #log-ul{
+    cursor:pointer;
     padding-left:5px;
     border-left:1px solid rgba(0,0,0,0.4);
 }
