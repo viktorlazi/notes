@@ -32,6 +32,9 @@ h1{
     transition: opacity 1s linear;
 
 }
+#logout{
+    cursor: pointer;
+}
 
 #commit:active{
     color: rgb(58, 75, 173);
