@@ -15,14 +15,15 @@ class Notes extends Component {
 
     }
     
-    
+    /*
     state={
         struktura:[],
         aktivni:{},
         smece:[],
         sadrzaj:[]
     };
-   /*
+    */
+   
 
     state = {
         struktura:[
@@ -73,8 +74,6 @@ class Notes extends Component {
     }
     
     
-
-    */
 
 componentDidMount(){
     let t = localStorage.getItem('user');
